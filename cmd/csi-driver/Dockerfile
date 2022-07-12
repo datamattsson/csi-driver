@@ -5,11 +5,10 @@ ADD AlmaLinux-Base.repo /etc/yum.repos.d/
 
 RUN microdnf install -y cryptsetup
 
-COPY --from=registry.access.redhat.com/ubi7/ubi:7.9 /usr/bin/systemctl /usr/bin/systemctl
-COPY --from=registry.access.redhat.com/ubi7/ubi:7.9 /usr/lib64/libgcrypt.so.11.8.2 /usr/lib64/libgcrypt.so.11.8.2
+COPY --from=centos:centos7.9.2009 /usr/bin/systemctl /usr/bin/systemctl
+COPY --from=centos:centos7.9.2009 /usr/lib64/libgcrypt.so.11.8.2 /usr/lib64/libgcrypt.so.11.8.2
 
 RUN ln -s /usr/lib64/libgcrypt.so.11.8.2 /usr/lib64/libgcrypt.so.11
-
 
 LABEL name="HPE CSI Driver for Kubernetes" \
       maintainer="HPE Storage" \
